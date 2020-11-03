@@ -28,7 +28,16 @@
         "produces": [
           "application/json"
         ],
-        "parameters": [],
+        "parameters": [
+          {
+            "type": "string",
+            "in": "header",
+            "name": "Content-Type",
+            "description": "application/json",
+            "required": true,
+            "default": "application/json"
+          }
+        ],
         "responses": {
           "200": {
             "description": "Get the languages table containing the codes and names used through the API",
@@ -540,27 +549,62 @@
             "type": "string",
             "name": "password",
             "description": "password"
+          },
+          {
+            "type": "string",
+            "in": "header",
+            "default": "application/json",
+            "name": "Content-Type"
           }
         ],
         "responses": {
           "200": {
             "description": "Create session and token",
             "schema": {
+              "description": "",
               "type": "object",
               "properties": {
+                "user": {
+                  "type": "object",
+                  "properties": {
+                    "allowed_downloads": {
+                      "type": "number"
+                    },
+                    "level": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "user_id": {
+                      "type": "number"
+                    },
+                    "ext_installed": {
+                      "type": "boolean"
+                    },
+                    "vip": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "allowed_downloads",
+                    "level",
+                    "user_id",
+                    "ext_installed",
+                    "vip"
+                  ]
+                },
                 "token": {
                   "type": "string",
-                  "description": "Authentication token (string)"
-                },
-                "user": {
-                  "type": "string",
-                  "description": "User data (hash)"
+                  "minLength": 1
                 },
                 "status": {
-                  "type": "string",
-                  "description": "Status (string)"
+                  "type": "number"
                 }
-              }
+              },
+              "required": [
+                "user",
+                "token",
+                "status"
+              ]
             },
             "headers": {},
             "examples": {
@@ -11372,13 +11416,14 @@
     "api_key": {
       "type": "apiKey",
       "in": "header",
-      "description": "",
+      "description": "API key obtain in the user profile on opensubtitles.com",
       "name": "api_key"
     },
     "Authorization": {
       "type": "apiKey",
       "name": "Authorization",
-      "in": "header"
+      "in": "header",
+      "description": "User token created in the login endpoint"
     }
   },
   "tags": [
