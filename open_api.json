@@ -4,7 +4,7 @@
     "title": "OpenSubtitles API",
     "version": "1.0.0"
   },
-  "host": "api.opensubtitles.com",
+  "host": "www.opensubtitles.com",
   "schemes": [
     "https"
   ],
@@ -348,7 +348,7 @@
         "deprecated": false,
         "security": [
           {
-            "api_key": []
+            "Authorization": []
           }
         ]
       }
@@ -358,7 +358,7 @@
         "tags": [
           "Infos"
         ],
-        "summary": "",
+        "summary": "Subtitle Formats",
         "description": "",
         "consumes": [
           "application/json"
@@ -404,8 +404,8 @@
         "tags": [
           "Infos"
         ],
-        "summary": "",
-        "description": "",
+        "summary": "User Informations",
+        "description": "Gather informations about the user authenticated by a bearer token",
         "consumes": [
           "application/json"
         ],
@@ -494,7 +494,7 @@
           "Authentication"
         ],
         "summary": "",
-        "description": "",
+        "description": "Create a token to authenticate users",
         "consumes": [
           "application/json"
         ],
@@ -503,18 +503,17 @@
         ],
         "parameters": [
           {
-            "name": "username",
             "in": "formData",
-            "description": "testuser",
+            "description": "username",
             "required": false,
-            "type": "string"
+            "type": "string",
+            "name": "username"
           },
           {
-            "name": "password",
             "in": "formData",
-            "description": "password",
-            "required": false,
-            "type": "string"
+            "type": "string",
+            "name": "password",
+            "description": "password"
           }
         ],
         "responses": {
@@ -11346,12 +11345,13 @@
   "securityDefinitions": {
     "api_key": {
       "type": "apiKey",
-      "name": "<api_key>",
-      "in": "header"
+      "in": "header",
+      "description": "",
+      "name": "api_key"
     },
     "Authorization": {
       "type": "apiKey",
-      "name": "Bearer <token>",
+      "name": "Authorization",
       "in": "header"
     }
   },
