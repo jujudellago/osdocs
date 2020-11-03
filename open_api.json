@@ -21,7 +21,7 @@
           "Infos"
         ],
         "summary": "",
-        "description": "",
+        "description": "Get the languages informations",
         "consumes": [
           "application/json"
         ],
@@ -31,10 +31,36 @@
         "parameters": [],
         "responses": {
           "200": {
-            "description": "Get the languages table",
+            "description": "Get the languages table containing the codes and names used through the API",
             "schema": {
+              "description": "",
               "type": "object",
-              "properties": {}
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "uniqueItems": true,
+                  "minItems": 1,
+                  "items": {
+                    "required": [
+                      "language_code",
+                      "language_name"
+                    ],
+                    "properties": {
+                      "language_code": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "language_name": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    }
+                  }
+                }
+              },
+              "required": [
+                "data"
+              ]
             },
             "headers": {},
             "examples": {
