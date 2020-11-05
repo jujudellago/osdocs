@@ -381,9 +381,6 @@
     },
     "/api/v1/infos/formats": {
       "get": {
-        "tags": [
-          "Infos"
-        ],
         "summary": "Subtitle Formats",
         "description": "",
         "consumes": [
@@ -727,7 +724,6 @@
         ],
         "responses": {
           "200": {
-            "description": "Find popular movies ",
             "schema": {
               "description": "",
               "type": "object",
@@ -5248,7 +5244,7 @@
     "/api/v1/subtitles": {
       "get": {
         "tags": [
-          "Find"
+          "Subtitles"
         ],
         "summary": "",
         "description": "Find subtitle for a video file. All parameters can be combined following various logics: searching by a specific external id (imdb, tmdb), a file moviehash, or a simple text query\n\n> For best results with automatic searching based on file analysis, send the file name as a query together with the moviehash",
@@ -8569,9 +8565,6 @@
     },
     "/api/v1/features": {
       "get": {
-        "tags": [
-          "Search"
-        ],
         "summary": "",
         "description": "Search for a Feature from a simple text input. Typically used for a text search or autocomplete.\n\n<!-- theme: warning -->\n\n> ### Watch Out!\n>\n> If you create an autocomplete, don't set a too small refresh limit, remember you must not go over 40 requests per 10 seconds!",
         "consumes": [
@@ -9610,6 +9603,9 @@
           {
             "api_key": []
           }
+        ],
+        "tags": [
+          "Features"
         ]
       },
       "parameters": []
@@ -9646,12 +9642,10 @@
       "description": "Subtitles search for a specific release"
     },
     {
-      "name": "Find",
-      "description": "Subtitles search for a specific release. <br /><br />This endpoint returns subtitle objects"
+      "name": "Subtitles"
     },
     {
-      "name": "Search",
-      "description": "Subtitles search"
+      "name": "Features"
     }
   ]
 }
