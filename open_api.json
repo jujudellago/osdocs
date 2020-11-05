@@ -404,10 +404,34 @@
         "parameters": [],
         "responses": {
           "200": {
-            "description": "List subtitle formats",
+            "description": "List subtitle formats recognized by the API",
             "schema": {
+              "description": "",
               "type": "object",
-              "properties": {}
+              "properties": {
+                "data": {
+                  "type": "object",
+                  "required": [
+                    "output_formats"
+                  ],
+                  "properties": {
+                    "output_formats": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "required": [
+                "data"
+              ]
             },
             "headers": {},
             "examples": {
@@ -440,7 +464,7 @@
           "Infos"
         ],
         "summary": "User Informations",
-        "description": "Gather informations about the user authenticated by a bearer token",
+        "description": "Gather informations about the user authenticated by a bearer token. User information are already sent when user is authenticated, and the remaining downloads is returned with each download, but you can also get these information here.",
         "consumes": [
           "application/json"
         ],
@@ -452,8 +476,49 @@
           "200": {
             "description": "Get user data",
             "schema": {
+              "description": "",
               "type": "object",
-              "properties": {}
+              "properties": {
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "allowed_downloads": {
+                      "type": "number"
+                    },
+                    "level": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "user_id": {
+                      "type": "number"
+                    },
+                    "ext_installed": {
+                      "type": "boolean"
+                    },
+                    "vip": {
+                      "type": "boolean"
+                    },
+                    "downloads_count": {
+                      "type": "number"
+                    },
+                    "remaining_downloads": {
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "allowed_downloads",
+                    "level",
+                    "user_id",
+                    "ext_installed",
+                    "vip",
+                    "downloads_count",
+                    "remaining_downloads"
+                  ]
+                }
+              },
+              "required": [
+                "data"
+              ]
             },
             "headers": {},
             "examples": {
@@ -488,7 +553,7 @@
           "Authentication"
         ],
         "summary": "",
-        "description": "",
+        "description": "Destroy a user token to end a session.",
         "consumes": [
           "application/json"
         ],
@@ -529,7 +594,7 @@
           "Authentication"
         ],
         "summary": "",
-        "description": "Create a token to authenticate users",
+        "description": "Create a token to authenticate a user.",
         "consumes": [
           "application/json"
         ],
@@ -538,23 +603,26 @@
         ],
         "parameters": [
           {
-            "in": "formData",
-            "description": "username",
-            "required": false,
-            "type": "string",
-            "name": "username"
-          },
-          {
-            "in": "formData",
-            "type": "string",
-            "name": "password",
-            "description": "password"
-          },
-          {
-            "type": "string",
-            "in": "header",
-            "default": "application/json",
-            "name": "Content-Type"
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "description": "",
+              "type": "object",
+              "properties": {
+                "password": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "username": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "required": [
+                "password",
+                "username"
+              ]
+            }
           }
         ],
         "responses": {
