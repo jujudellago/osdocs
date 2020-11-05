@@ -28,16 +28,7 @@
         "produces": [
           "application/json"
         ],
-        "parameters": [
-          {
-            "type": "string",
-            "in": "header",
-            "name": "Content-Type",
-            "description": "application/json",
-            "required": true,
-            "default": "application/json"
-          }
-        ],
+        "parameters": [],
         "responses": {
           "200": {
             "description": "Get the languages table containing the codes and names used through the API",
