@@ -374,7 +374,7 @@
         "deprecated": false,
         "security": [
           {
-            "Authorization": []
+            "api_key": []
           }
         ]
       }
@@ -618,7 +618,7 @@
           {
             "type": "string",
             "in": "header",
-            "name": " Content-Type",
+            "name": "Content-Type",
             "required": true,
             "default": "application/json"
           }
@@ -4667,7 +4667,7 @@
           "Download"
         ],
         "summary": "",
-        "description": "Request a download url for a subtitle",
+        "description": "Request a download url for a subtitle. \n\n> The download count is performed on this action, not the download itself",
         "consumes": [
           "application/json"
         ],
@@ -4741,7 +4741,7 @@
           {
             "type": "string",
             "in": "header",
-            "name": " Content-Type",
+            "name": "Content-Type",
             "required": true,
             "default": "application/json"
           }
