@@ -623,6 +623,13 @@
                 "username"
               ]
             }
+          },
+          {
+            "type": "string",
+            "in": "header",
+            "name": " Content-Type",
+            "required": true,
+            "default": "application/json"
           }
         ],
         "responses": {
@@ -4739,6 +4746,13 @@
             "description": "Timeshift, (+/- time in ms or s, eg +2s  or -200ms)",
             "required": false,
             "type": "string"
+          },
+          {
+            "type": "string",
+            "in": "header",
+            "name": " Content-Type",
+            "required": true,
+            "default": "application/json"
           }
         ],
         "responses": {
