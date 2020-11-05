@@ -3,7 +3,7 @@
   "info": {
     "title": "OpenSubtitles API",
     "version": "1.0.0",
-    "description": "### Getting started\n\n\nWelcome to the new beta release of the OpenSubtitles REST API. On this page you will find the current list of available methods to query our database.\n\n---\n\n### Authentication\n\n> #### 💡 Important\n>\n> Our API is using 2 authentication mechanisms. One with a static API key, related to an application or service, refered to as **consumer** in this documentation, and one with a **JWT** related to a user.\n\n\nYour consumer can query the API on its own, and download 5 subtitles per requesting IP's, but a user must be authenticated to download more. Users will then be able to download as many subtitles as their ranks allows, from 10 as simple signed up user, to 1000 for VIP.\n\nIf you wish to offer subtitles without prompting for an opensubtitles account, please [contact us](https://www.opensubtitles.com/contact) and tell us about your project.\n\nFor an easier development process, you can set your consumer as \"Under Development\", this will allow you to perform up to 100 downloads per day without user authentication.\n\n---\n\n\n#### API Key\n\nYou can obtain an api key in the [API consumers](https://www.opensubtitles.com/consumers) section of your profile.\nCreate a consumer object that will contain the required api key.\n\nThis api key will then need to be added to every queries to the api\n\n> All throughout this documentation every method has a \"Try it out\" tab. This functionality will let your paste your API key (and other pertinent parameters) and make a live request to the API.\n\n\n```shell\n\n  curl -g \"https://www.opensubtitles.com/api/v1/infos/formats\" -X GET \\\n    -H \"Content-Type: application/json\" \\\n    -H \"api_key: <<API_KEY>>\"\n\n```\n\n#### JWT\n\nTo authenticate a user, create a JWT in the [login](https://opensubtitles.stoplight.io/docs/opensubtitles-api/open_api.json/paths/~1api~1v1~1login/post) endpoint, then add it to the header as follow\n> Users must be authenticated for 2 endpoints: user infos **/infos/user** and subtitle downloads \n\n\n```shell\n\n  curl -g \"https://www.opensubtitles.com/api/v1/infos/user\" -X GET \\\n    -H \"Content-Type: application/json\" \\\n    -H \"api_key: <<API_KEY>>\",\n    -H \"Authorization: Bearer <<ACCESS_TOKEN>>\n\n```\n\n---\n\n\n\n\n### Object types\nThe /subtitles and /features endpoints return different object types\n\n#### Features\n\nA feature can be a movie, a tv serie, or an episode.\n\nSearch for features in the **/api/v1/features** endpoint, the returned results will be formatted according to the feature type\n\nA movie will contain basic information and subtitles counts for each language\n```json\n{\n  \"data\": [\n    {\n      \"id\": \"23132\",\n      \"type\": \"movie\",\n      \"attributes\": {\n        \"title\": \"The Matrix Revolutions\",\n        \"original_title\": \"The Matrix Revolutions\",\n        \"imdb_id\": 242653,\n        \"tmdb_id\": 605,\n        \"feature_id\": \"23132\",\n        \"year\": \"2003\",\n        \"title_aka\": [\n          \"Матрицата: Революции\",\n          \" Matrix Revolutions\",\n          \" The Matrix: Revolutions\",\n          \" The Matrix Revolutions\",\n          \" انقلاب‌های ماتریکس\",\n          \" מטריקס רבולושנס\",\n          \" Mátrix - Forradalmak\",\n          \" マトリックス レボリューションズ\",\n          \" 매트릭스 3: 레볼루션\",\n          \" Matrica. Revoliucijos\",\n          \" Matrix rewolucje\",\n          \" Matrix - Revoluții\",\n          \" Матрица: Революция\",\n          \" Матрикс\",\n          \" ปฎิวัติมนุษย์เหนือโลก\",\n          \" Матриця: Революція\",\n          \" 黑客帝国3：矩阵革命\"\n        ],\n        \"subtitles_counts\": {\n          \"de\": 1,\n          \"el\": 1\n        },\n        \"url\": \"https://www.opensubtitles.com/en/movies/2003-the-matrix-revolutions\",\n        \"img_url\": \"http://localhost:3000/features/2/3/1/23132.jpg\"\n      }\n    }\n\n```\n\n\nA Tv serie will contain information for all seasons and episodes\n\n\n```json\n\n{\n  \"data\": [\n    {\n      \"id\": \"108\",\n      \"type\": \"tvshow\",\n      \"attributes\": {\n        \"title\": \"24\",\n        \"original_title\": \"Twenty Four\",\n        \"year\": \"2001\",\n        \"imdb_id\": 285331,\n        \"tmdb_id\": 1973,\n        \"title_aka\": [\n          \"24\"\n        ],\n        \"feature_id\": \"108\",\n        \"url\": \"https://www.opensubtitles.com/en/tvshows/2001-24\",\n        \"img_url\": \"http://localhost:3000/features/8/0/1/108.jpg\",\n        \"subtitles_counts\": {\n          \"pl\": 737,\n          \"en\": 694,\n          \"pt-BR\": 453,\n          \"ro\": 363,\n          \"nl\": 348,\n          \"pt-PT\": 347,\n          \"es\": 337,\n          \"he\": 312,\n          \"hu\": 290,\n          \"el\": 263,\n          \"fr\": 255,\n          \"tr\": 254,\n          \"cs\": 241,\n          \"fi\": 233,\n          \"ar\": 214,\n          \"hr\": 189,\n          \"sl\": 172,\n          \"bg\": 155,\n          \"sr\": 138,\n          \"sv\": 126,\n          \"de\": 81,\n          \"et\": 72,\n          \"da\": 58,\n          \"bs\": 55,\n          \"it\": 52,\n          \"mk\": 47,\n          \"ru\": 45,\n          \"no\": 31,\n          \"th\": 24,\n          \"vi\": 11,\n          \"ja\": 10,\n          \"fa\": 8,\n          \"zh-CN\": 7,\n          \"ca\": 3,\n          \"id\": 3,\n          \"sk\": 2,\n          \"ko\": 1,\n          \"zh-TW\": 1\n        },\n        \"subtitles_count\": 282,\n        \"seasons\": [\n          {\n            \"season_number\": 1,\n            \"episodes\": [\n              {\n                \"episode_number\": 5,\n                \"title\": \"\\\"24\\\" 4:00 a.m.-5:00 a.m.\",\n                \"feature_id\": 6527,\n                \"feature_imdb_id\": 502173\n              },\n              {\n                \"episode_number\": 6,\n                \"title\": \"5:00 A.M.-6:00 A.M.\",\n                \"feature_id\": 6583,\n                \"feature_imdb_id\": 502175\n              },\n              {\n                \"episode_number\": 7,\n                \"title\": \"6:00 A.M.-7:00 A.M.\",\n                \"feature_id\": 6503,\n                \"feature_imdb_id\": 502177\n              },\n        \n...\n\nAn episode will contain information about tv serie and season \n\n\n```json\n{\n  \"data\": [\n    {\n      \"id\": \"6583\",\n      \"type\": \"episode\",\n      \"attributes\": {\n        \"title\": \"5:00 A.M.-6:00 A.M.\",\n        \"original_title\": null,\n        \"year\": \"2001\",\n        \"parent_imdb_id\": null,\n        \"parent_title\": \"24\",\n        \"season_number\": 1,\n        \"episode_number\": 6,\n        \"imdb_id\": 502175,\n        \"tmdb_id\": 134399,\n        \"title_aka\": [\n          \"5:00 A.M.-6:00 A.M.\",\n          \" 05:00 - 06:00 Uhr\",\n          \" Dalle 05:00 alle 06:00\"\n        ],\n        \"feature_id\": \"6583\",\n        \"url\": \"https://www.opensubtitles.com/en/tvshows/2001-24/seasons/1/episodes/6-24-5-00-a-m-6-00-a-m\",\n        \"img_url\": \"http://localhost:3000/features/3/8/5/6583.jpg\",\n        \"subtitles_counts\": {\n          \"pl\": 20,\n          \"en\": 17,\n          \"pt-BR\": 11,\n          \"es\": 8,\n          \"ro\": 8,\n          \"nl\": 7,\n          \"tr\": 7,\n          \"he\": 6,\n          \"pt-PT\": 6,\n          \"cs\": 5,\n          \"fi\": 5,\n          \"hu\": 5,\n          \"ar\": 4,\n          \"bg\": 4,\n          \"fr\": 4,\n          \"sl\": 4,\n          \"el\": 3,\n          \"hr\": 3,\n          \"sr\": 3,\n          \"et\": 2,\n          \"sv\": 2,\n          \"th\": 2,\n          \"bs\": 1,\n          \"da\": 1,\n          \"de\": 1,\n          \"mk\": 1,\n          \"no\": 1,\n          \"ru\": 1\n        },\n        \"subtitles_count\": 142\n      }\n    }\n  ]\n}\n\n```\n\n#### Subtitles\n\nYou can search for subtitles by id, external id, querystring or moviehash in  **/api/v1/subtitles**\n\nThese will return an array of subtitles objects, containing the required ID's for further downloads\n\n\n\n```json\n\n{\n  \"total_pages\": 1,\n  \"total_count\": 52,\n  \"page\": 1,\n  \"data\": [\n    {\n      \"id\": \"4363173\",\n      \"type\": \"subtitle\",\n      \"attributes\": {\n        \"subtitle_id\": \"4363173\",\n        \"language\": \"en\",\n        \"download_count\": 164041,\n        \"new_download_count\": 56,\n        \"hearing_impaired\": false,\n        \"hd\": true,\n        \"format\": null,\n        \"fps\": 23.976,\n        \"votes\": 1,\n        \"points\": 10,\n        \"ratings\": 10.0,\n        \"from_trusted\": true,\n        \"auto_translation\": false,\n        \"ai_translated\": false,\n        \"machine_translated\": null,\n        \"release\": \"720p.HDDVD.DTS.x264-ESiR\",\n        \"feature_details\": {\n          \"feature_id\": 646193,\n          \"feature_type\": \"Movie\",\n          \"movie_name\": \"1999 - The Matrix\",\n          \"imdb_id\": 133093,\n          \"tmdb_id\": 603\n        },\n        \"url\": \"https://www.opensubtitles.com/en/subtitles/3372882-720p-hddvd-dts-x264-esir.html\",\n        \"related_links\": {\n          \"label\": \"All subtitles for The Matrix\",\n          \"url\": \"https://www.opensubtitles.com/en/movies/1999-the-matrix.html\",\n          \"img_url\": \"https://s9.osdb.link/features/3/9/1/646193.jpg\"\n        },\n        \"files\": [\n          {\n            \"file_id\": 4461104,\n            \"cd_number\": 1,\n            \"file_name\": \"The.Matrix.1999.720p.HDDVD.DTS.x264-ESiR.ENG.srt\"\n          }\n        ]\n      }\n    },\n\n```\n\n\n---\n\n\n### Testing\n\nUse spotlight integrated features to try the api straight from the browser.\n\n---\n\n### Changelog\n\n#### 02 October 2020\n\n- Modified naming of the file id, from \"id\" to \"file_id\" of the \"files\" array in subtitle results for naming consistency</p>\n\n\n\n\n```json\n\n \"files\": [\n          {\n            \"id\": 4486640,\n            \"cd_number\": 1,\n            \"file_name\": \"The.Matrix.1999.srt\"\n          }\n        ]\n```\n\n\n\n\nNEW\n\n\n```json\n \"files\": [\n          {\n            \"file_id\": 4486640,\n            \"cd_number\": 1,\n            \"file_name\": \"The.Matrix.1999.srt\"\n          }\n        ]\n```\n\n\n\n\n#### 27 October 2020\n\n- Modified the Authentication header syntax to include the \"Bearer\" prefix</p>\n\n\n\n\n OLD\n```json\nAuthorization: <<access_token>>\n```\n\n\n\nNEW\n\n```json\nAuthorization: Bearer <<access_token>>\n```\n\n\n#### 30 October 2020\n\nAdded api_key description, now required for all requests.\n\n\n"
+    "description": "### Getting started\n\n\nWelcome to the new beta release of the OpenSubtitles REST API. On this page you will find the current list of available methods to query our database.\n\n---\n\n### Authentication\n\n> #### 💡 Important\n>\n> Our API is using 2 authentication mechanisms. One with a static API key, related to an application or service, refered to as **consumer** in this documentation, and one with a **JWT** related to a user.\n\n\nYour consumer can query the API on its own, and download 5 subtitles per requesting IP's, but a user must be authenticated to download more. Users will then be able to download as many subtitles as their ranks allows, from 10 as simple signed up user, to 1000 for VIP.\n\nIf you wish to offer subtitles without prompting for an opensubtitles account, please [contact us](https://www.opensubtitles.com/contact) and tell us about your project.\n\nFor an easier development process, you can set your consumer as \"Under Development\", this will allow you to perform up to 100 downloads per day without user authentication.\n\n---\n\n\n#### API Key\n\nYou can obtain an api key in the [API consumers](https://www.opensubtitles.com/consumers) section of your profile.\nCreate a consumer object that will contain the required api key.\n\nThis api key will then need to be added to every queries to the api\n\n> All throughout this documentation every method has a \"Try it out\" tab. This functionality will let your paste your API key (and other pertinent parameters) and make a live request to the API.\n\n\n```shell\n\n  curl -g \"https://www.opensubtitles.com/api/v1/infos/formats\" -X GET \\\n    -H \"Content-Type: application/json\" \\\n    -H \"api_key: <<API_KEY>>\"\n\n```\n\n#### JWT\n\nTo authenticate a user, create a JWT in the [login](https://opensubtitles.stoplight.io/docs/opensubtitles-api/open_api.json/paths/~1api~1v1~1login/post) endpoint, then add it to the header as follow\n> Users must be authenticated for 2 endpoints: user infos **/infos/user** and subtitle downloads \n\n\n```shell\n\n  curl -g \"https://www.opensubtitles.com/api/v1/infos/user\" -X GET \\\n    -H \"Content-Type: application/json\" \\\n    -H \"api_key: <<API_KEY>>\",\n    -H \"Authorization: Bearer <<ACCESS_TOKEN>>\n\n```\n\n---\n\n\n\n\n### Object types\nThe /subtitles and /features endpoints return different object types\n\n#### Features\n\nA feature can be a movie, a tv serie, or an episode.\n\nSearch for features in the **/api/v1/features** endpoint, the returned results will be formatted according to the feature type\n\nA movie will contain basic information and subtitles counts for each language\n```json\n{\n  \"data\": [\n    {\n      \"id\": \"23132\",\n      \"type\": \"movie\",\n      \"attributes\": {\n        \"title\": \"The Matrix Revolutions\",\n        \"original_title\": \"The Matrix Revolutions\",\n        \"imdb_id\": 242653,\n        \"tmdb_id\": 605,\n        \"feature_id\": \"23132\",\n        \"year\": \"2003\",\n        \"title_aka\": [\n          \"Матрицата: Революции\",\n          \" Matrix Revolutions\",\n          \" The Matrix: Revolutions\",\n          \" The Matrix Revolutions\",\n          \" انقلاب‌های ماتریکس\",\n          \" מטריקס רבולושנס\",\n          \" Mátrix - Forradalmak\",\n          \" マトリックス レボリューションズ\",\n          \" 매트릭스 3: 레볼루션\",\n          \" Matrica. Revoliucijos\",\n          \" Matrix rewolucje\",\n          \" Matrix - Revoluții\",\n          \" Матрица: Революция\",\n          \" Матрикс\",\n          \" ปฎิวัติมนุษย์เหนือโลก\",\n          \" Матриця: Революція\",\n          \" 黑客帝国3：矩阵革命\"\n        ],\n        \"subtitles_counts\": {\n          \"de\": 1,\n          \"el\": 1\n        },\n        \"url\": \"https://www.opensubtitles.com/en/movies/2003-the-matrix-revolutions\",\n        \"img_url\": \"http://localhost:3000/features/2/3/1/23132.jpg\"\n      }\n    }\n\n```\n\n\nA Tv serie will contain information for all seasons and episodes\n\n\n```json\n\n{\n  \"data\": [\n    {\n      \"id\": \"108\",\n      \"type\": \"tvshow\",\n      \"attributes\": {\n        \"title\": \"24\",\n        \"original_title\": \"Twenty Four\",\n        \"year\": \"2001\",\n        \"imdb_id\": 285331,\n        \"tmdb_id\": 1973,\n        \"title_aka\": [\n          \"24\"\n        ],\n        \"feature_id\": \"108\",\n        \"url\": \"https://www.opensubtitles.com/en/tvshows/2001-24\",\n        \"img_url\": \"http://localhost:3000/features/8/0/1/108.jpg\",\n        \"subtitles_counts\": {\n          \"pl\": 737,\n          \"en\": 694,\n          \"pt-BR\": 453,\n          \"ro\": 363,\n          \"nl\": 348,\n          \"pt-PT\": 347,\n          \"es\": 337,\n          \"he\": 312,\n          \"hu\": 290,\n          \"el\": 263,\n          \"fr\": 255,\n          \"tr\": 254,\n          \"cs\": 241,\n          \"fi\": 233,\n          \"ar\": 214,\n          \"hr\": 189,\n          \"sl\": 172,\n          \"bg\": 155,\n          \"sr\": 138,\n          \"sv\": 126,\n          \"de\": 81,\n          \"et\": 72,\n          \"da\": 58,\n          \"bs\": 55,\n          \"it\": 52,\n          \"mk\": 47,\n          \"ru\": 45,\n          \"no\": 31,\n          \"th\": 24,\n          \"vi\": 11,\n          \"ja\": 10,\n          \"fa\": 8,\n          \"zh-CN\": 7,\n          \"ca\": 3,\n          \"id\": 3,\n          \"sk\": 2,\n          \"ko\": 1,\n          \"zh-TW\": 1\n        },\n        \"subtitles_count\": 282,\n        \"seasons\": [\n          {\n            \"season_number\": 1,\n            \"episodes\": [\n              {\n                \"episode_number\": 5,\n                \"title\": \"\\\"24\\\" 4:00 a.m.-5:00 a.m.\",\n                \"feature_id\": 6527,\n                \"feature_imdb_id\": 502173\n              },\n              {\n                \"episode_number\": 6,\n                \"title\": \"5:00 A.M.-6:00 A.M.\",\n                \"feature_id\": 6583,\n                \"feature_imdb_id\": 502175\n              },\n              {\n                \"episode_number\": 7,\n                \"title\": \"6:00 A.M.-7:00 A.M.\",\n                \"feature_id\": 6503,\n                \"feature_imdb_id\": 502177\n              },\n        \n...\n\nAn episode will contain information about tv serie and season \n\n\n```json\n{\n  \"data\": [\n    {\n      \"id\": \"6583\",\n      \"type\": \"episode\",\n      \"attributes\": {\n        \"title\": \"5:00 A.M.-6:00 A.M.\",\n        \"original_title\": null,\n        \"year\": \"2001\",\n        \"parent_imdb_id\": null,\n        \"parent_title\": \"24\",\n        \"season_number\": 1,\n        \"episode_number\": 6,\n        \"imdb_id\": 502175,\n        \"tmdb_id\": 134399,\n        \"title_aka\": [\n          \"5:00 A.M.-6:00 A.M.\",\n          \" 05:00 - 06:00 Uhr\",\n          \" Dalle 05:00 alle 06:00\"\n        ],\n        \"feature_id\": \"6583\",\n        \"url\": \"https://www.opensubtitles.com/en/tvshows/2001-24/seasons/1/episodes/6-24-5-00-a-m-6-00-a-m\",\n        \"img_url\": \"http://localhost:3000/features/3/8/5/6583.jpg\",\n        \"subtitles_counts\": {\n          \"pl\": 20,\n          \"en\": 17,\n          \"pt-BR\": 11,\n          \"es\": 8,\n          \"ro\": 8,\n          \"nl\": 7,\n          \"tr\": 7,\n          \"he\": 6,\n          \"pt-PT\": 6,\n          \"cs\": 5,\n          \"fi\": 5,\n          \"hu\": 5,\n          \"ar\": 4,\n          \"bg\": 4,\n          \"fr\": 4,\n          \"sl\": 4,\n          \"el\": 3,\n          \"hr\": 3,\n          \"sr\": 3,\n          \"et\": 2,\n          \"sv\": 2,\n          \"th\": 2,\n          \"bs\": 1,\n          \"da\": 1,\n          \"de\": 1,\n          \"mk\": 1,\n          \"no\": 1,\n          \"ru\": 1\n        },\n        \"subtitles_count\": 142\n      }\n    }\n  ]\n}\n\n```\n\n#### Subtitles\n\nYou can search for subtitles by id, external id, querystring or moviehash in  **/api/v1/subtitles**\n\nThese will return an array of subtitles objects, containing the required ID's for further downloads\n\n\n\n```json\n\n{\n  \"total_pages\": 1,\n  \"total_count\": 52,\n  \"page\": 1,\n  \"data\": [\n    {\n      \"id\": \"4363173\",\n      \"type\": \"subtitle\",\n      \"attributes\": {\n        \"subtitle_id\": \"4363173\",\n        \"language\": \"en\",\n        \"download_count\": 164041,\n        \"new_download_count\": 56,\n        \"hearing_impaired\": false,\n        \"hd\": true,\n        \"format\": null,\n        \"fps\": 23.976,\n        \"votes\": 1,\n        \"points\": 10,\n        \"ratings\": 10.0,\n        \"from_trusted\": true,\n        \"auto_translation\": false,\n        \"ai_translated\": false,\n        \"machine_translated\": null,\n        \"release\": \"720p.HDDVD.DTS.x264-ESiR\",\n        \"feature_details\": {\n          \"feature_id\": 646193,\n          \"feature_type\": \"Movie\",\n          \"movie_name\": \"1999 - The Matrix\",\n          \"imdb_id\": 133093,\n          \"tmdb_id\": 603\n        },\n        \"url\": \"https://www.opensubtitles.com/en/subtitles/3372882-720p-hddvd-dts-x264-esir.html\",\n        \"related_links\": {\n          \"label\": \"All subtitles for The Matrix\",\n          \"url\": \"https://www.opensubtitles.com/en/movies/1999-the-matrix.html\",\n          \"img_url\": \"https://s9.osdb.link/features/3/9/1/646193.jpg\"\n        },\n        \"files\": [\n          {\n            \"file_id\": 4461104,\n            \"cd_number\": 1,\n            \"file_name\": \"The.Matrix.1999.720p.HDDVD.DTS.x264-ESiR.ENG.srt\"\n          }\n        ]\n      }\n    },\n\n```\n\n\n---\n\n\n### Testing\n\nUse spotlight integrated features to try the api straight from the browser.\n\n---\n\n### Changelog\n\n#### 02 October 2020\n\n- Modified naming of the file id, from \"id\" to \"file_id\" of the \"files\" array in subtitle results for naming consistency</p>\n\n\n\n\n```json\n\n \"files\": [\n          {\n            \"id\": 4486640,\n            \"cd_number\": 1,\n            \"file_name\": \"The.Matrix.1999.srt\"\n          }\n        ]\n```\n\n\n\n\nNEW\n\n\n```json\n \"files\": [\n          {\n            \"file_id\": 4486640,\n            \"cd_number\": 1,\n            \"file_name\": \"The.Matrix.1999.srt\"\n          }\n        ]\n```\n\n\n\n\n#### 27 October 2020\n\n- Modified the Authentication header syntax to include the \"Bearer\" prefix</p>\n\n\n\n\n OLD\n```json\nAuthorization: <<access_token>>\n```\n\n\n\nNEW\n\n```json\nAuthorization: Bearer <<access_token>>\n```\n\n\n#### 30 October 2020\n\nAdded api_key description, now required for all requests.\n\n\n#### 04 November 2020\n\nMerged and renamed /find and /search endpoints to use /subtitles and /features endpoints\n\n\n"
   },
   "host": "www.opensubtitles.com",
   "schemes": [
@@ -8459,7 +8459,7 @@
     "/api/v1/features": {
       "get": {
         "summary": "Search for features",
-        "description": "Search for a Feature from a simple text input. Typically used for a text search or autocomplete.\n\n<!-- theme: warning -->\n\n> ### Watch Out!\n>\n> If you create an autocomplete, don't set a too small refresh limit, remember you must not go over 40 requests per 10 seconds!",
+        "description": "With the \"query\" parameter, search for a Feature from a simple text input. Typically used for a text search or autocomplete.\n\nWith an ID, get basic information and subtitles count for a specific title.\n\n<!-- theme: warning -->\n\n> ### Watch Out!\n>\n> If you create an autocomplete, don't set a too small refresh limit, remember you must not go over 40 requests per 10 seconds!",
         "consumes": [
           "application/json"
         ],
@@ -8480,14 +8480,143 @@
             "in": "query",
             "name": "type",
             "description": "empty to list all, movie, tvshow or episode."
+          },
+          {
+            "type": "integer",
+            "in": "query",
+            "name": "feature_id",
+            "description": "opensubtitles feature id"
+          },
+          {
+            "type": "string",
+            "in": "query",
+            "name": "imdb_id",
+            "description": "IMDB ID, you can send with or without the \"TT\"\n"
+          },
+          {
+            "type": "string",
+            "in": "query",
+            "name": "tmdb_id",
+            "description": "Themoviedb ID - combined with type to avoid errors"
           }
         ],
         "responses": {
           "200": {
             "description": "Search for a feature by title ",
             "schema": {
+              "description": "",
               "type": "object",
-              "properties": {}
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "uniqueItems": true,
+                  "minItems": 1,
+                  "items": {
+                    "required": [
+                      "id",
+                      "type"
+                    ],
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "type": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "attributes": {
+                        "type": "object",
+                        "properties": {
+                          "title": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "original_title": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "imdb_id": {
+                            "type": "number"
+                          },
+                          "tmdb_id": {
+                            "type": "number"
+                          },
+                          "feature_id": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "year": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "title_aka": {
+                            "type": "array",
+                            "items": {
+                              "required": [],
+                              "properties": {}
+                            }
+                          },
+                          "subtitles_counts": {
+                            "type": "object",
+                            "properties": {
+                              "de": {
+                                "type": "number"
+                              },
+                              "en": {
+                                "type": "number"
+                              },
+                              "fr": {
+                                "type": "number"
+                              },
+                              "es": {
+                                "type": "number"
+                              },
+                              "pt-BR": {
+                                "type": "number"
+                              },
+                              "it": {
+                                "type": "number"
+                              }
+                            },
+                            "required": [
+                              "de",
+                              "en",
+                              "fr",
+                              "es",
+                              "pt-BR",
+                              "it"
+                            ]
+                          },
+                          "url": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "img_url": {
+                            "type": "string",
+                            "minLength": 1
+                          }
+                        },
+                        "required": [
+                          "title",
+                          "original_title",
+                          "imdb_id",
+                          "tmdb_id",
+                          "feature_id",
+                          "year",
+                          "title_aka",
+                          "subtitles_counts",
+                          "url",
+                          "img_url"
+                        ]
+                      }
+                    }
+                  }
+                }
+              },
+              "required": [
+                "data"
+              ]
             },
             "headers": {},
             "examples": {
@@ -9540,5 +9669,16 @@
     {
       "name": "Features"
     }
-  ]
+  ],
+  "definitions": {
+    "Subtitle": {
+      "title": "Subtitle",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      }
+    }
+  }
 }
