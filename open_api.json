@@ -9714,13 +9714,998 @@
   ],
   "definitions": {
     "Subtitle": {
-      "title": "Subtitle",
+      "description": "",
       "type": "object",
       "properties": {
         "id": {
-          "type": "string"
+          "type": "string",
+          "minLength": 1
+        },
+        "type": {
+          "type": "string",
+          "minLength": 1
+        },
+        "attributes": {
+          "type": "object",
+          "properties": {
+            "subtitle_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "language": {
+              "type": "string",
+              "minLength": 1
+            },
+            "download_count": {
+              "type": "number"
+            },
+            "new_download_count": {
+              "type": "number"
+            },
+            "hearing_impaired": {
+              "type": "boolean"
+            },
+            "hd": {
+              "type": "boolean"
+            },
+            "format": {},
+            "fps": {
+              "type": "number"
+            },
+            "votes": {
+              "type": "number"
+            },
+            "points": {
+              "type": "number"
+            },
+            "ratings": {
+              "type": "number"
+            },
+            "from_trusted": {
+              "type": "boolean"
+            },
+            "foreign_parts_only": {
+              "type": "boolean"
+            },
+            "auto_translation": {
+              "type": "boolean"
+            },
+            "ai_translated": {
+              "type": "boolean"
+            },
+            "machine_translated": {},
+            "upload_date": {
+              "type": "string",
+              "minLength": 1
+            },
+            "release": {
+              "type": "string",
+              "minLength": 1
+            },
+            "comments": {
+              "type": "string"
+            },
+            "legacy_subtitle_id": {
+              "type": "number"
+            },
+            "uploader": {
+              "type": "object",
+              "properties": {
+                "uploader_id": {},
+                "name": {
+                  "type": "string"
+                },
+                "rank": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "name",
+                "rank"
+              ]
+            },
+            "feature_details": {
+              "type": "object",
+              "properties": {
+                "feature_id": {
+                  "type": "number"
+                },
+                "feature_type": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "year": {
+                  "type": "number"
+                },
+                "title": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "movie_name": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "imdb_id": {
+                  "type": "number"
+                },
+                "tmdb_id": {
+                  "type": "number"
+                }
+              },
+              "required": [
+                "feature_id",
+                "feature_type",
+                "year",
+                "title",
+                "movie_name",
+                "imdb_id",
+                "tmdb_id"
+              ]
+            },
+            "url": {
+              "type": "string",
+              "minLength": 1
+            },
+            "related_links": {
+              "type": "object",
+              "properties": {
+                "label": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "url": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "img_url": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "required": [
+                "label",
+                "url",
+                "img_url"
+              ]
+            },
+            "files": {
+              "type": "array",
+              "uniqueItems": true,
+              "minItems": 1,
+              "items": {
+                "required": [
+                  "file_id",
+                  "cd_number",
+                  "file_name"
+                ],
+                "properties": {
+                  "file_id": {
+                    "type": "number"
+                  },
+                  "cd_number": {
+                    "type": "number"
+                  },
+                  "file_name": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            }
+          },
+          "required": [
+            "subtitle_id",
+            "language",
+            "download_count",
+            "new_download_count",
+            "hearing_impaired",
+            "hd",
+            "fps",
+            "votes",
+            "points",
+            "ratings",
+            "from_trusted",
+            "foreign_parts_only",
+            "auto_translation",
+            "ai_translated",
+            "upload_date",
+            "release",
+            "comments",
+            "legacy_subtitle_id",
+            "uploader",
+            "feature_details",
+            "url",
+            "related_links",
+            "files"
+          ]
         }
-      }
+      },
+      "required": [
+        "id",
+        "type",
+        "attributes"
+      ]
+    },
+    "Feature-(tvshow)": {
+      "description": "",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "type": {
+          "type": "string",
+          "minLength": 1
+        },
+        "attributes": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string",
+              "minLength": 1
+            },
+            "original_title": {
+              "type": "string",
+              "minLength": 1
+            },
+            "year": {
+              "type": "string",
+              "minLength": 1
+            },
+            "imdb_id": {
+              "type": "number"
+            },
+            "tmdb_id": {
+              "type": "number"
+            },
+            "title_aka": {
+              "type": "array",
+              "items": {
+                "required": [],
+                "properties": {}
+              }
+            },
+            "feature_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "url": {
+              "type": "string",
+              "minLength": 1
+            },
+            "img_url": {
+              "type": "string",
+              "minLength": 1
+            },
+            "subtitles_counts": {
+              "type": "object",
+              "properties": {
+                "pl": {
+                  "type": "number"
+                },
+                "en": {
+                  "type": "number"
+                },
+                "pt-BR": {
+                  "type": "number"
+                },
+                "ro": {
+                  "type": "number"
+                },
+                "nl": {
+                  "type": "number"
+                },
+                "pt-PT": {
+                  "type": "number"
+                },
+                "es": {
+                  "type": "number"
+                },
+                "he": {
+                  "type": "number"
+                },
+                "hu": {
+                  "type": "number"
+                },
+                "el": {
+                  "type": "number"
+                },
+                "fr": {
+                  "type": "number"
+                },
+                "tr": {
+                  "type": "number"
+                },
+                "cs": {
+                  "type": "number"
+                },
+                "fi": {
+                  "type": "number"
+                },
+                "ar": {
+                  "type": "number"
+                },
+                "hr": {
+                  "type": "number"
+                },
+                "sl": {
+                  "type": "number"
+                },
+                "bg": {
+                  "type": "number"
+                },
+                "sr": {
+                  "type": "number"
+                },
+                "sv": {
+                  "type": "number"
+                },
+                "de": {
+                  "type": "number"
+                },
+                "et": {
+                  "type": "number"
+                },
+                "da": {
+                  "type": "number"
+                },
+                "bs": {
+                  "type": "number"
+                },
+                "it": {
+                  "type": "number"
+                },
+                "mk": {
+                  "type": "number"
+                },
+                "ru": {
+                  "type": "number"
+                },
+                "no": {
+                  "type": "number"
+                },
+                "th": {
+                  "type": "number"
+                },
+                "vi": {
+                  "type": "number"
+                },
+                "ja": {
+                  "type": "number"
+                },
+                "fa": {
+                  "type": "number"
+                },
+                "zh-CN": {
+                  "type": "number"
+                },
+                "ca": {
+                  "type": "number"
+                },
+                "id": {
+                  "type": "number"
+                },
+                "sk": {
+                  "type": "number"
+                },
+                "ko": {
+                  "type": "number"
+                },
+                "zh-TW": {
+                  "type": "number"
+                }
+              },
+              "required": [
+                "pl",
+                "en",
+                "pt-BR",
+                "ro",
+                "nl",
+                "pt-PT",
+                "es",
+                "he",
+                "hu",
+                "el",
+                "fr",
+                "tr",
+                "cs",
+                "fi",
+                "ar",
+                "hr",
+                "sl",
+                "bg",
+                "sr",
+                "sv",
+                "de",
+                "et",
+                "da",
+                "bs",
+                "it",
+                "mk",
+                "ru",
+                "no",
+                "th",
+                "vi",
+                "ja",
+                "fa",
+                "zh-CN",
+                "ca",
+                "id",
+                "sk",
+                "ko",
+                "zh-TW"
+              ]
+            },
+            "subtitles_count": {
+              "type": "number"
+            },
+            "seasons": {
+              "type": "array",
+              "uniqueItems": true,
+              "minItems": 1,
+              "items": {
+                "required": [
+                  "season_number"
+                ],
+                "properties": {
+                  "season_number": {
+                    "type": "number"
+                  },
+                  "episodes": {
+                    "type": "array",
+                    "uniqueItems": true,
+                    "minItems": 1,
+                    "items": {
+                      "required": [
+                        "episode_number",
+                        "title",
+                        "feature_id",
+                        "feature_imdb_id"
+                      ],
+                      "properties": {
+                        "episode_number": {
+                          "type": "number"
+                        },
+                        "title": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "feature_id": {
+                          "type": "number"
+                        },
+                        "feature_imdb_id": {
+                          "type": "number"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "required": [
+            "title",
+            "original_title",
+            "year",
+            "imdb_id",
+            "tmdb_id",
+            "title_aka",
+            "feature_id",
+            "url",
+            "img_url",
+            "subtitles_counts",
+            "subtitles_count",
+            "seasons"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "type",
+        "attributes"
+      ]
+    },
+    "Feature-(Episode)": {
+      "description": "",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "type": {
+          "type": "string",
+          "minLength": 1
+        },
+        "attributes": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string",
+              "minLength": 1
+            },
+            "original_title": {},
+            "year": {
+              "type": "string",
+              "minLength": 1
+            },
+            "parent_imdb_id": {},
+            "parent_title": {
+              "type": "string",
+              "minLength": 1
+            },
+            "season_number": {
+              "type": "number"
+            },
+            "episode_number": {
+              "type": "number"
+            },
+            "imdb_id": {
+              "type": "number"
+            },
+            "tmdb_id": {
+              "type": "number"
+            },
+            "title_aka": {
+              "type": "array",
+              "items": {
+                "required": [],
+                "properties": {}
+              }
+            },
+            "feature_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "url": {
+              "type": "string",
+              "minLength": 1
+            },
+            "img_url": {
+              "type": "string",
+              "minLength": 1
+            },
+            "subtitles_counts": {
+              "type": "object",
+              "properties": {
+                "pl": {
+                  "type": "number"
+                },
+                "en": {
+                  "type": "number"
+                },
+                "pt-BR": {
+                  "type": "number"
+                },
+                "es": {
+                  "type": "number"
+                },
+                "ro": {
+                  "type": "number"
+                },
+                "nl": {
+                  "type": "number"
+                },
+                "tr": {
+                  "type": "number"
+                },
+                "he": {
+                  "type": "number"
+                },
+                "pt-PT": {
+                  "type": "number"
+                },
+                "cs": {
+                  "type": "number"
+                },
+                "fi": {
+                  "type": "number"
+                },
+                "hu": {
+                  "type": "number"
+                },
+                "ar": {
+                  "type": "number"
+                },
+                "bg": {
+                  "type": "number"
+                },
+                "fr": {
+                  "type": "number"
+                },
+                "sl": {
+                  "type": "number"
+                },
+                "el": {
+                  "type": "number"
+                },
+                "hr": {
+                  "type": "number"
+                },
+                "sr": {
+                  "type": "number"
+                },
+                "et": {
+                  "type": "number"
+                },
+                "sv": {
+                  "type": "number"
+                },
+                "th": {
+                  "type": "number"
+                },
+                "bs": {
+                  "type": "number"
+                },
+                "da": {
+                  "type": "number"
+                },
+                "de": {
+                  "type": "number"
+                },
+                "mk": {
+                  "type": "number"
+                },
+                "no": {
+                  "type": "number"
+                },
+                "ru": {
+                  "type": "number"
+                }
+              },
+              "required": [
+                "pl",
+                "en",
+                "pt-BR",
+                "es",
+                "ro",
+                "nl",
+                "tr",
+                "he",
+                "pt-PT",
+                "cs",
+                "fi",
+                "hu",
+                "ar",
+                "bg",
+                "fr",
+                "sl",
+                "el",
+                "hr",
+                "sr",
+                "et",
+                "sv",
+                "th",
+                "bs",
+                "da",
+                "de",
+                "mk",
+                "no",
+                "ru"
+              ]
+            },
+            "subtitles_count": {
+              "type": "number"
+            },
+            "seasons": {
+              "type": "array",
+              "items": {
+                "required": [],
+                "properties": {}
+              }
+            }
+          },
+          "required": [
+            "title",
+            "year",
+            "parent_title",
+            "season_number",
+            "episode_number",
+            "imdb_id",
+            "tmdb_id",
+            "title_aka",
+            "feature_id",
+            "url",
+            "img_url",
+            "subtitles_counts",
+            "subtitles_count",
+            "seasons"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "type",
+        "attributes"
+      ]
+    },
+    "Feature-(Movie)": {
+      "description": "",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "type": {
+          "type": "string",
+          "minLength": 1
+        },
+        "attributes": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string",
+              "minLength": 1
+            },
+            "original_title": {
+              "type": "string",
+              "minLength": 1
+            },
+            "year": {
+              "type": "string",
+              "minLength": 1
+            },
+            "subtitles_counts": {
+              "type": "object",
+              "properties": {
+                "en": {
+                  "type": "number"
+                },
+                "pt-PT": {
+                  "type": "number"
+                },
+                "fi": {
+                  "type": "number"
+                },
+                "pt-BR": {
+                  "type": "number"
+                },
+                "es": {
+                  "type": "number"
+                },
+                "ar": {
+                  "type": "number"
+                },
+                "pl": {
+                  "type": "number"
+                },
+                "sr": {
+                  "type": "number"
+                },
+                "id": {
+                  "type": "number"
+                },
+                "ro": {
+                  "type": "number"
+                },
+                "zh-CN": {
+                  "type": "number"
+                },
+                "nl": {
+                  "type": "number"
+                },
+                "el": {
+                  "type": "number"
+                },
+                "hu": {
+                  "type": "number"
+                },
+                "fr": {
+                  "type": "number"
+                },
+                "sl": {
+                  "type": "number"
+                },
+                "tr": {
+                  "type": "number"
+                },
+                "et": {
+                  "type": "number"
+                },
+                "bg": {
+                  "type": "number"
+                },
+                "cs": {
+                  "type": "number"
+                },
+                "de": {
+                  "type": "number"
+                },
+                "he": {
+                  "type": "number"
+                },
+                "it": {
+                  "type": "number"
+                },
+                "vi": {
+                  "type": "number"
+                },
+                "hr": {
+                  "type": "number"
+                },
+                "ko": {
+                  "type": "number"
+                },
+                "no": {
+                  "type": "number"
+                },
+                "sv": {
+                  "type": "number"
+                },
+                "ta": {
+                  "type": "number"
+                },
+                "eu": {
+                  "type": "number"
+                },
+                "da": {
+                  "type": "number"
+                },
+                "fa": {
+                  "type": "number"
+                },
+                "sk": {
+                  "type": "number"
+                },
+                "uk": {
+                  "type": "number"
+                },
+                "zh-TW": {
+                  "type": "number"
+                },
+                "bn": {
+                  "type": "number"
+                },
+                "ka": {
+                  "type": "number"
+                },
+                "ja": {
+                  "type": "number"
+                },
+                "lt": {
+                  "type": "number"
+                },
+                "mk": {
+                  "type": "number"
+                },
+                "ml": {
+                  "type": "number"
+                },
+                "ms": {
+                  "type": "number"
+                },
+                "ru": {
+                  "type": "number"
+                },
+                "ze": {
+                  "type": "number"
+                }
+              },
+              "required": [
+                "en",
+                "pt-PT",
+                "fi",
+                "pt-BR",
+                "es",
+                "ar",
+                "pl",
+                "sr",
+                "id",
+                "ro",
+                "zh-CN",
+                "nl",
+                "el",
+                "hu",
+                "fr",
+                "sl",
+                "tr",
+                "et",
+                "bg",
+                "cs",
+                "de",
+                "he",
+                "it",
+                "vi",
+                "hr",
+                "ko",
+                "no",
+                "sv",
+                "ta",
+                "eu",
+                "da",
+                "fa",
+                "sk",
+                "uk",
+                "zh-TW",
+                "bn",
+                "ka",
+                "ja",
+                "lt",
+                "mk",
+                "ml",
+                "ms",
+                "ru",
+                "ze"
+              ]
+            },
+            "subtitles_count": {
+              "type": "number"
+            },
+            "seasons_count": {
+              "type": "number"
+            },
+            "parent_title": {
+              "type": "string"
+            },
+            "season_number": {
+              "type": "number"
+            },
+            "episode_number": {},
+            "imdb_id": {
+              "type": "number"
+            },
+            "tmdb_id": {
+              "type": "number"
+            },
+            "parent_imdb_id": {},
+            "feature_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "title_aka": {
+              "type": "array",
+              "items": {
+                "required": [],
+                "properties": {}
+              }
+            },
+            "feature_type": {
+              "type": "string",
+              "minLength": 1
+            },
+            "url": {
+              "type": "string",
+              "minLength": 1
+            },
+            "img_url": {
+              "type": "string",
+              "minLength": 1
+            },
+            "seasons": {
+              "type": "array",
+              "items": {
+                "required": [],
+                "properties": {}
+              }
+            }
+          },
+          "required": [
+            "title",
+            "original_title",
+            "year",
+            "subtitles_counts",
+            "subtitles_count",
+            "seasons_count",
+            "parent_title",
+            "season_number",
+            "imdb_id",
+            "tmdb_id",
+            "feature_id",
+            "title_aka",
+            "feature_type",
+            "url",
+            "img_url",
+            "seasons"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "type",
+        "attributes"
+      ]
     }
   }
 }
