@@ -20,7 +20,7 @@
         "tags": [
           "Infos"
         ],
-        "summary": "",
+        "summary": "Languages",
         "description": "Get the languages informations",
         "consumes": [
           "application/json"
@@ -540,7 +540,7 @@
         "tags": [
           "Authentication"
         ],
-        "summary": "",
+        "summary": "Logout",
         "description": "Destroy a user token to end a session.",
         "consumes": [
           "application/json"
@@ -581,7 +581,7 @@
         "tags": [
           "Authentication"
         ],
-        "summary": "",
+        "summary": "Login",
         "description": "Create a token to authenticate a user.",
         "consumes": [
           "application/json"
@@ -698,7 +698,7 @@
         "tags": [
           "Discover"
         ],
-        "summary": "",
+        "summary": "Popular features",
         "description": "Discover popular features on opensubtitles.com, according to last 30 days downloads.",
         "consumes": [
           "application/json"
@@ -2359,7 +2359,7 @@
         "tags": [
           "Discover"
         ],
-        "summary": "",
+        "summary": "Most downloaded subtitles",
         "description": "Discover popular subtitles, according to last 30 days downloads on opensubtitles.com. This list can be filtered by language code or feature type (movie, episode)",
         "consumes": [
           "application/json"
@@ -2868,7 +2868,7 @@
                       "machine_translated": null,
                       "upload_date": "2005-08-19T22:00:00Z",
                       "release": "Philadelphia Story, The (1940)",
-                      "comments": null,
+                      "comments": "",
                       "legacy_subtitle_id": 101000,
                       "uploader": {
                         "uploader_id": 14715,
@@ -5110,74 +5110,26 @@
         ],
         "parameters": [
           {
-            "name": "file_id",
-            "in": "formData",
-            "description": "ID of the file to download",
-            "required": false,
-            "type": "integer"
-          },
-          {
-            "name": "sub_format",
-            "in": "formData",
-            "description": "Format (optional, default to original. possible values: srt, sub, mpl, webvtt, dfxp, txt)",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "file_name",
-            "in": "formData",
-            "description": "Desired name of the returned file",
-            "required": false,
-            "type": "string"
-          },
-          {
             "name": "strip_html",
             "in": "formData",
             "description": "Remove HTML tags (default false)",
             "required": false,
-            "type": "string"
-          },
-          {
-            "name": "cleanup_links",
-            "in": "formData",
-            "description": "Remove HTML links",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "remove_adds",
-            "in": "formData",
-            "description": "Remove ads",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "in_fps",
-            "in": "formData",
-            "description": "Input FPS (advanced, default to original subtitle FPS)",
-            "required": false,
-            "type": "string"
+            "type": "boolean"
           },
           {
             "name": "out_fps",
             "in": "formData",
             "description": "Output FPS",
             "required": false,
-            "type": "string"
+            "type": "number"
           },
           {
-            "name": "timeshift",
-            "in": "formData",
-            "description": "Timeshift, (+/- time in ms or s, eg +2s  or -200ms)",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "type": "string",
-            "in": "header",
-            "name": "Content-Type",
-            "required": true,
-            "default": "application/json"
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
           }
         ],
         "responses": {
@@ -5246,7 +5198,7 @@
         "tags": [
           "Subtitles"
         ],
-        "summary": "",
+        "summary": "Search for subtitles",
         "description": "Find subtitle for a video file. All parameters can be combined following various logics: searching by a specific external id (imdb, tmdb), a file moviehash, or a simple text query\n\n> For best results with automatic searching based on file analysis, send the file name as a query together with the moviehash",
         "consumes": [
           "application/json"
@@ -7831,69 +7783,6 @@
                     }
                   },
                   {
-                    "id": "4461186",
-                    "type": "subtitle",
-                    "attributes": {
-                      "subtitle_id": "4461186",
-                      "language": "en",
-                      "download_count": 2314,
-                      "new_download_count": 1,
-                      "hearing_impaired": false,
-                      "hd": false,
-                      "format": null,
-                      "fps": 23.976,
-                      "votes": 4,
-                      "points": 31,
-                      "ratings": 7.8,
-                      "from_trusted": false,
-                      "foreign_parts_only": false,
-                      "auto_translation": false,
-                      "ai_translated": false,
-                      "machine_translated": null,
-                      "upload_date": "2007-02-09T20:03:50Z",
-                      "release": "The.Departed.2006.DVDRip.XviD.AC3-JUPiT",
-                      "comments": "The.Departed.2006.DVDRip.XviD.AC3-JUPiT",
-                      "legacy_subtitle_id": 3101963,
-                      "uploader": {
-                        "uploader_id": 3282,
-                        "name": "COF7CJpS",
-                        "rank": "app developer"
-                      },
-                      "feature_details": {
-                        "feature_id": 650445,
-                        "feature_type": "Movie",
-                        "year": 2006,
-                        "title": "The Departed",
-                        "movie_name": "2006 - The Departed",
-                        "imdb_id": 407887,
-                        "tmdb_id": 1422
-                      },
-                      "url": "https://www.opensubtitles.com/en/subtitles/legacy/3101963",
-                      "related_links": {
-                        "label": "All subtitles for The Departed",
-                        "url": "https://www.opensubtitles.com/en/movies/2006-the-departed",
-                        "img_url": "https://s9.osdb.link/features/5/4/4/650445.jpg"
-                      },
-                      "files": [
-                        {
-                          "file_id": 4571308,
-                          "cd_number": 1,
-                          "file_name": null
-                        },
-                        {
-                          "file_id": 4571317,
-                          "cd_number": 2,
-                          "file_name": null
-                        },
-                        {
-                          "file_id": 4571324,
-                          "cd_number": 3,
-                          "file_name": null
-                        }
-                      ]
-                    }
-                  },
-                  {
                     "id": "4479030",
                     "type": "subtitle",
                     "attributes": {
@@ -8565,7 +8454,7 @@
     },
     "/api/v1/features": {
       "get": {
-        "summary": "",
+        "summary": "Search for features",
         "description": "Search for a Feature from a simple text input. Typically used for a text search or autocomplete.\n\n<!-- theme: warning -->\n\n> ### Watch Out!\n>\n> If you create an autocomplete, don't set a too small refresh limit, remember you must not go over 40 requests per 10 seconds!",
         "consumes": [
           "application/json"
