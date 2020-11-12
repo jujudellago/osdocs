@@ -72,33 +72,23 @@
         ],
         "parameters": [
           {
-            "in": "body",
-            "name": "body",
-            "schema": {
-              "description": "",
-              "type": "object",
-              "properties": {
-                "password": {
-                  "type": "string",
-                  "minLength": 1
-                },
-                "username": {
-                  "type": "string",
-                  "minLength": 1
-                }
-              },
-              "required": [
-                "password",
-                "username"
-              ]
-            }
-          },
-          {
             "type": "string",
             "in": "header",
             "name": "Content-Type",
             "required": true,
             "default": "application/json"
+          },
+          {
+            "in": "formData",
+            "type": "string",
+            "name": "username",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "type": "string",
+            "name": "password",
+            "required": true
           }
         ],
         "responses": {
