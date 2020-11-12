@@ -75,8 +75,8 @@
             "type": "string",
             "in": "header",
             "name": "Content-Type",
-            "required": true,
-            "default": "application/json"
+            "default": "multipart/form-data",
+            "required": true
           },
           {
             "in": "formData",
@@ -9539,68 +9539,63 @@
         ],
         "parameters": [
           {
+            "in": "formData",
+            "type": "number",
+            "name": "file_id",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "type": "string",
+            "name": "sub_format",
+            "description": "from /infos/formats"
+          },
+          {
+            "in": "formData",
+            "type": "string",
+            "name": "file_name",
+            "description": "desired file name"
+          },
+          {
+            "in": "formData",
+            "type": "boolean",
             "name": "strip_html",
-            "in": "formData",
-            "description": "Remove HTML tags (default false)",
-            "required": false,
-            "type": "boolean"
+            "description": "removes html formatting"
           },
           {
-            "name": "out_fps",
             "in": "formData",
-            "description": "Output FPS",
-            "required": false,
-            "type": "number"
+            "type": "boolean",
+            "name": "cleanup_links",
+            "description": "remove any html links present in subtitle"
           },
           {
-            "in": "body",
-            "name": "body",
-            "schema": {
-              "description": "",
-              "type": "object",
-              "properties": {
-                "file_id": {
-                  "type": "number"
-                },
-                "sub_format": {
-                  "type": "string",
-                  "minLength": 1
-                },
-                "file_name": {
-                  "type": "string",
-                  "minLength": 1
-                },
-                "strip_html": {
-                  "type": "boolean"
-                },
-                "cleanup_links": {
-                  "type": "boolean"
-                },
-                "remove_adds": {
-                  "type": "boolean"
-                },
-                "in_fps": {
-                  "type": "number"
-                },
-                "out_fps": {
-                  "type": "number"
-                },
-                "timeshift": {
-                  "type": "number"
-                }
-              },
-              "required": [
-                "file_id",
-                "sub_format",
-                "file_name",
-                "strip_html",
-                "cleanup_links",
-                "remove_adds",
-                "in_fps",
-                "out_fps",
-                "timeshift"
-              ]
-            }
+            "in": "formData",
+            "type": "boolean",
+            "name": "remove_adds",
+            "description": "remove text adds in subtitles (experimental!)"
+          },
+          {
+            "in": "formData",
+            "type": "number",
+            "name": "in_fps",
+            "description": "used for conversions, in and out must then be indicated"
+          },
+          {
+            "in": "formData",
+            "type": "number",
+            "name": "out_fps"
+          },
+          {
+            "in": "formData",
+            "type": "number",
+            "name": "timeshift"
+          },
+          {
+            "type": "string",
+            "in": "header",
+            "name": "Content-Type",
+            "default": "multipart/form-data",
+            "required": true
           }
         ],
         "responses": {
