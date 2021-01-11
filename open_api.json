@@ -2350,6 +2350,9 @@
     },
     "/api/v1/discover/latest": {
       "get": {
+	    "tags": [
+	         "Discover"
+	     ],
         "summary": "Latest subtitles",
         "tags": [],
         "responses": {
