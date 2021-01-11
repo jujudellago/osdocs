@@ -2348,6 +2348,276 @@
         ]
       }
     },
+    "/api/v1/discover/latest": {
+      "get": {
+        "summary": "Latest subtitles",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "description": "",
+              "type": "object",
+              "properties": {
+                "total_pages": {
+                  "type": "number"
+                },
+                "total_count": {
+                  "type": "number"
+                },
+                "page": {
+                  "type": "number"
+                },
+                "data": {
+                  "type": "array",
+                  "uniqueItems": true,
+                  "minItems": 1,
+                  "items": {
+                    "required": [
+                      "id",
+                      "type"
+                    ],
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "type": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "attributes": {
+                        "type": "object",
+                        "properties": {
+                          "subtitle_id": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "language": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "download_count": {
+                            "type": "number"
+                          },
+                          "new_download_count": {
+                            "type": "number"
+                          },
+                          "hearing_impaired": {
+                            "type": "boolean"
+                          },
+                          "hd": {
+                            "type": "boolean"
+                          },
+                          "format": {},
+                          "fps": {
+                            "type": "number"
+                          },
+                          "votes": {
+                            "type": "number"
+                          },
+                          "points": {
+                            "type": "number"
+                          },
+                          "ratings": {
+                            "type": "number"
+                          },
+                          "from_trusted": {
+                            "type": "boolean"
+                          },
+                          "foreign_parts_only": {
+                            "type": "boolean"
+                          },
+                          "auto_translation": {
+                            "type": "boolean"
+                          },
+                          "ai_translated": {
+                            "type": "boolean"
+                          },
+                          "machine_translated": {},
+                          "upload_date": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "release": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "comments": {
+                            "type": "string"
+                          },
+                          "legacy_subtitle_id": {
+                            "type": "number"
+                          },
+                          "uploader": {
+                            "type": "object",
+                            "properties": {
+                              "uploader_id": {
+                                "type": "number"
+                              },
+                              "name": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "rank": {
+                                "type": "string",
+                                "minLength": 1
+                              }
+                            },
+                            "required": [
+                              "uploader_id",
+                              "name",
+                              "rank"
+                            ]
+                          },
+                          "feature_details": {
+                            "type": "object",
+                            "properties": {
+                              "feature_id": {
+                                "type": "number"
+                              },
+                              "feature_type": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "year": {
+                                "type": "number"
+                              },
+                              "title": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "movie_name": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "imdb_id": {
+                                "type": "number"
+                              },
+                              "tmdb_id": {}
+                            },
+                            "required": [
+                              "feature_id",
+                              "feature_type",
+                              "year",
+                              "title",
+                              "movie_name",
+                              "imdb_id"
+                            ]
+                          },
+                          "url": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "related_links": {
+                            "type": "object",
+                            "properties": {
+                              "label": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "url": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "img_url": {
+                                "type": "string",
+                                "minLength": 1
+                              }
+                            },
+                            "required": [
+                              "label",
+                              "url",
+                              "img_url"
+                            ]
+                          },
+                          "files": {
+                            "type": "array",
+                            "uniqueItems": true,
+                            "minItems": 1,
+                            "items": {
+                              "required": [
+                                "file_id",
+                                "cd_number",
+                                "file_name"
+                              ],
+                              "properties": {
+                                "file_id": {
+                                  "type": "number"
+                                },
+                                "cd_number": {
+                                  "type": "number"
+                                },
+                                "file_name": {
+                                  "type": "string",
+                                  "minLength": 1
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "required": [
+                          "subtitle_id",
+                          "language",
+                          "download_count",
+                          "new_download_count",
+                          "hearing_impaired",
+                          "hd",
+                          "fps",
+                          "votes",
+                          "points",
+                          "ratings",
+                          "from_trusted",
+                          "foreign_parts_only",
+                          "auto_translation",
+                          "ai_translated",
+                          "upload_date",
+                          "release",
+                          "comments",
+                          "legacy_subtitle_id",
+                          "uploader",
+                          "feature_details",
+                          "url",
+                          "related_links",
+                          "files"
+                        ]
+                      }
+                    }
+                  }
+                }
+              },
+              "required": [
+                "total_pages",
+                "total_count",
+                "page",
+                "data"
+              ]
+            }
+          }
+        },
+        "operationId": "",
+        "description": "Lists 60 latest uploaded subtitles",
+        "parameters": [
+          {
+            "type": "string",
+            "in": "query",
+            "name": "languages",
+            "description": "Language code(s), coma separated (en,fr) or \"all\""
+          },
+          {
+            "type": "string",
+            "in": "query",
+            "name": "type",
+            "description": "Type (movie or tvshow)"
+          }
+        ],
+        "security": [
+          {
+            "Api-Key": []
+          }
+        ]
+      }
+    },
     "/api/v1/discover/most_downloaded": {
       "get": {
         "tags": [
@@ -9668,7 +9938,7 @@
             "headers": {},
             "examples": {
               "application/json": {
-                "link": "http://localhost:3000/download/D0E564C2E64CD88E1DCC89CAFDB61749EBB963E8BD5168577D9A14999FFDB601231A537DAD84820D1268E97B59F6B38354DA6BAAA3191C8640FC529B6A3A0544E62EE86574BE083233A247C44A77B076B9B1051CC3ABB87FEBF9EE3524D4EC011ACACECB29AC558607CD9E789361299F18B3B81D4F627D37B44B83466F723FF674BA890BC1E7BD85FD1A7582526AAB7AFB9DDD77A3493959C179B68234ACC80F52D94A918E3476005B9A2C7EB49C3CFFB01A142B6E970C3A1D0203CE68A1B871CAF59E938EF76A3DA1652B1FDCCF7A29A47AEFBB5D1FA798DA2E79C65188FA4D/subfile/The.Meg.2018.BDRip.XviD.AC3-EVO.srt",
+                "link": "https://api.opensubtitles.com/download/D0E564C2E64CD88E1DCC89CAFDB61749EBB963E8BD5168577D9A14999FFDB601231A537DAD84820D1268E97B59F6B38354DA6BAAA3191C8640FC529B6A3A0544E62EE86574BE083233A247C44A77B076B9B1051CC3ABB87FEBF9EE3524D4EC011ACACECB29AC558607CD9E789361299F18B3B81D4F627D37B44B83466F723FF674BA890BC1E7BD85FD1A7582526AAB7AFB9DDD77A3493959C179B68234ACC80F52D94A918E3476005B9A2C7EB49C3CFFB01A142B6E970C3A1D0203CE68A1B871CAF59E938EF76A3DA1652B1FDCCF7A29A47AEFBB5D1FA798DA2E79C65188FA4D/subfile/The.Meg.2018.BDRip.XviD.AC3-EVO.srt",
                 "fname": "The.Meg.2018.BDRip.XviD.AC3-EVO.srt",
                 "requests": 2,
                 "allowed": 100,
@@ -9688,277 +9958,6 @@
           }
         ]
       }
-    },
-    "/api/v1/discover/latest": {
-      "get": {
-        "summary": "Latest subtitles",
-        "tags": [],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "description": "",
-              "type": "object",
-              "properties": {
-                "total_pages": {
-                  "type": "number"
-                },
-                "total_count": {
-                  "type": "number"
-                },
-                "page": {
-                  "type": "number"
-                },
-                "data": {
-                  "type": "array",
-                  "uniqueItems": true,
-                  "minItems": 1,
-                  "items": {
-                    "required": [
-                      "id",
-                      "type"
-                    ],
-                    "properties": {
-                      "id": {
-                        "type": "string",
-                        "minLength": 1
-                      },
-                      "type": {
-                        "type": "string",
-                        "minLength": 1
-                      },
-                      "attributes": {
-                        "type": "object",
-                        "properties": {
-                          "subtitle_id": {
-                            "type": "string",
-                            "minLength": 1
-                          },
-                          "language": {
-                            "type": "string",
-                            "minLength": 1
-                          },
-                          "download_count": {
-                            "type": "number"
-                          },
-                          "new_download_count": {
-                            "type": "number"
-                          },
-                          "hearing_impaired": {
-                            "type": "boolean"
-                          },
-                          "hd": {
-                            "type": "boolean"
-                          },
-                          "format": {},
-                          "fps": {
-                            "type": "number"
-                          },
-                          "votes": {
-                            "type": "number"
-                          },
-                          "points": {
-                            "type": "number"
-                          },
-                          "ratings": {
-                            "type": "number"
-                          },
-                          "from_trusted": {
-                            "type": "boolean"
-                          },
-                          "foreign_parts_only": {
-                            "type": "boolean"
-                          },
-                          "auto_translation": {
-                            "type": "boolean"
-                          },
-                          "ai_translated": {
-                            "type": "boolean"
-                          },
-                          "machine_translated": {},
-                          "upload_date": {
-                            "type": "string",
-                            "minLength": 1
-                          },
-                          "release": {
-                            "type": "string",
-                            "minLength": 1
-                          },
-                          "comments": {
-                            "type": "string"
-                          },
-                          "legacy_subtitle_id": {
-                            "type": "number"
-                          },
-                          "uploader": {
-                            "type": "object",
-                            "properties": {
-                              "uploader_id": {
-                                "type": "number"
-                              },
-                              "name": {
-                                "type": "string",
-                                "minLength": 1
-                              },
-                              "rank": {
-                                "type": "string",
-                                "minLength": 1
-                              }
-                            },
-                            "required": [
-                              "uploader_id",
-                              "name",
-                              "rank"
-                            ]
-                          },
-                          "feature_details": {
-                            "type": "object",
-                            "properties": {
-                              "feature_id": {
-                                "type": "number"
-                              },
-                              "feature_type": {
-                                "type": "string",
-                                "minLength": 1
-                              },
-                              "year": {
-                                "type": "number"
-                              },
-                              "title": {
-                                "type": "string",
-                                "minLength": 1
-                              },
-                              "movie_name": {
-                                "type": "string",
-                                "minLength": 1
-                              },
-                              "imdb_id": {
-                                "type": "number"
-                              },
-                              "tmdb_id": {}
-                            },
-                            "required": [
-                              "feature_id",
-                              "feature_type",
-                              "year",
-                              "title",
-                              "movie_name",
-                              "imdb_id"
-                            ]
-                          },
-                          "url": {
-                            "type": "string",
-                            "minLength": 1
-                          },
-                          "related_links": {
-                            "type": "object",
-                            "properties": {
-                              "label": {
-                                "type": "string",
-                                "minLength": 1
-                              },
-                              "url": {
-                                "type": "string",
-                                "minLength": 1
-                              },
-                              "img_url": {
-                                "type": "string",
-                                "minLength": 1
-                              }
-                            },
-                            "required": [
-                              "label",
-                              "url",
-                              "img_url"
-                            ]
-                          },
-                          "files": {
-                            "type": "array",
-                            "uniqueItems": true,
-                            "minItems": 1,
-                            "items": {
-                              "required": [
-                                "file_id",
-                                "cd_number",
-                                "file_name"
-                              ],
-                              "properties": {
-                                "file_id": {
-                                  "type": "number"
-                                },
-                                "cd_number": {
-                                  "type": "number"
-                                },
-                                "file_name": {
-                                  "type": "string",
-                                  "minLength": 1
-                                }
-                              }
-                            }
-                          }
-                        },
-                        "required": [
-                          "subtitle_id",
-                          "language",
-                          "download_count",
-                          "new_download_count",
-                          "hearing_impaired",
-                          "hd",
-                          "fps",
-                          "votes",
-                          "points",
-                          "ratings",
-                          "from_trusted",
-                          "foreign_parts_only",
-                          "auto_translation",
-                          "ai_translated",
-                          "upload_date",
-                          "release",
-                          "comments",
-                          "legacy_subtitle_id",
-                          "uploader",
-                          "feature_details",
-                          "url",
-                          "related_links",
-                          "files"
-                        ]
-                      }
-                    }
-                  }
-                }
-              },
-              "required": [
-                "total_pages",
-                "total_count",
-                "page",
-                "data"
-              ]
-            }
-          }
-        },
-        "operationId": "",
-        "description": "Lists 60 latest uploaded subtitles",
-        "parameters": [
-          {
-            "type": "string",
-            "in": "query",
-            "name": "languages",
-            "description": "Language code(s), coma separated (en,fr) or \"all\""
-          },
-          {
-            "type": "string",
-            "in": "query",
-            "name": "type",
-            "description": "Type (movie or tvshow)"
-          }
-        ],
-        "security": [
-          {
-            "Api-Key": []
-          }
-        ]
-      },
-      "parameters": []
     }
   },
   "securityDefinitions": {
