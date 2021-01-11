@@ -9691,7 +9691,7 @@
     },
     "/api/v1/discover/latest": {
       "get": {
-        "summary": "Your GET endpoint",
+        "summary": "Latest subtitles",
         "tags": [],
         "responses": {
           "200": {
