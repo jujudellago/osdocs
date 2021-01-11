@@ -2354,7 +2354,6 @@
 	         "Discover"
 	     ],
         "summary": "Latest subtitles",
-        "tags": [],
         "responses": {
           "200": {
             "description": "OK",
