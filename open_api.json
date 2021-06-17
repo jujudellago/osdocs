@@ -6697,6 +6697,12 @@
             "in": "query",
             "name": "year",
             "description": "Filter by movie/episode year"
+          },
+          {
+            "type": "string",
+            "in": "query",
+            "name": "moviehash_match",
+            "description": "include, only (default: include)"
           }
         ],
         "responses": {
